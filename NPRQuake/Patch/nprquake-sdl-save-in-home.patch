@@ -1,0 +1,168 @@
+diff -Naur NPRQuake.old/NPRQuakeSrc/common.c NPRQuake/NPRQuakeSrc/common.c
+--- NPRQuake.old/NPRQuakeSrc/common.c	1999-12-21 21:53:24.000000000 +0100
++++ NPRQuake/NPRQuakeSrc/common.c	2008-03-25 18:41:02.000000000 +0100
+@@ -1239,6 +1239,7 @@
+ 
+ char    com_cachedir[MAX_OSPATH];
+ char    com_gamedir[MAX_OSPATH];
++char	com_basedir[MAX_OSPATH];
+ 
+ typedef struct searchpath_s
+ {
+@@ -1686,20 +1687,26 @@
+ then loads and adds pak1.pak pak2.pak ... 
+ ================
+ */
+-void COM_AddGameDirectory (char *dir)
++static void
++COM_AddGameDirectory (char *base, char *dir)
+ {
+ 	int                             i;
+ 	searchpath_t    *search;
+ 	pack_t                  *pak;
+ 	char                    pakfile[MAX_OSPATH];
+ 
+-	strcpy (com_gamedir, dir);
++	if (!base)
++		return;
++	
++	strcpy(com_gamedir, va("%s/%s", base, dir));
++
++//	strcpy (com_gamedir, dir);
+ 
+ //
+ // add the directory to the search path
+ //
+ 	search = Hunk_Alloc (sizeof(searchpath_t));
+-	strcpy (search->filename, dir);
++	strcpy (search->filename, com_gamedir);
+ 	search->next = com_searchpaths;
+ 	com_searchpaths = search;
+ 
+@@ -1708,7 +1715,7 @@
+ //
+ 	for (i=0 ; ; i++)
+ 	{
+-		sprintf (pakfile, "%s/pak%i.pak", dir, i);
++		sprintf (pakfile, "%s/pak%i.pak", com_gamedir, i);
+ 		pak = COM_LoadPackFile (pakfile);
+ 		if (!pak)
+ 			break;
+@@ -1731,26 +1738,30 @@
+ */
+ void COM_InitFilesystem (void)
+ {
++	char	*home;
+ 	int             i, j;
+-	char    basedir[MAX_OSPATH];
++//	char    basedir[MAX_OSPATH];
+ 	searchpath_t    *search;
+ 
++	home = getenv("HOME");
++
+ //
+ // -basedir <path>
+ // Overrides the system supplied base directory (under GAMENAME)
+ //
+ 	i = COM_CheckParm ("-basedir");
+ 	if (i && i < com_argc-1)
+-		strcpy (basedir, com_argv[i+1]);
++		strcpy (com_basedir, com_argv[i+1]);
+ 	else
+-		strcpy (basedir, host_parms.basedir);
++		strcpy (com_basedir, GENTOO_DATADIR);
++//		strcpy (com_basedir, host_parms.basedir);
+ 
+-	j = strlen (basedir);
++	j = strlen (com_basedir);
+ 
+ 	if (j > 0)
+ 	{
+-		if ((basedir[j-1] == '\\') || (basedir[j-1] == '/'))
+-			basedir[j-1] = 0;
++		if ((com_basedir[j-1] == '\\') || (com_basedir[j-1] == '/'))
++			com_basedir[j-1] = 0;
+ 	}
+ 
+ //
+@@ -1774,12 +1785,17 @@
+ //
+ // start up with GAMENAME by default (id1)
+ //
+-	COM_AddGameDirectory (va("%s/"GAMENAME, basedir) );
++	COM_AddGameDirectory(com_basedir, GAMENAME);
++	COM_AddGameDirectory(home, ".nprquake-sdl/" GAMENAME);
+ 
+-	if (COM_CheckParm ("-rogue"))
+-		COM_AddGameDirectory (va("%s/rogue", basedir) );
+-	if (COM_CheckParm ("-hipnotic"))
+-		COM_AddGameDirectory (va("%s/hipnotic", basedir) );
++	if (COM_CheckParm ("-rogue")) {
++		COM_AddGameDirectory(com_basedir, "rogue");
++		COM_AddGameDirectory(home, ".nprquake-sdl/rogue");
++	}
++	if (COM_CheckParm ("-hipnotic")) {
++		COM_AddGameDirectory(com_basedir, "hipnotic");
++		COM_AddGameDirectory(home, ".nprquake-sdl/hipnotic");
++	}
+ 
+ //
+ // -game <gamedir>
+@@ -1789,9 +1805,16 @@
+ 	if (i && i < com_argc-1)
+ 	{
+ 		com_modified = true;
+-		COM_AddGameDirectory (va("%s/%s", basedir, com_argv[i+1]));
++		COM_AddGameDirectory(com_basedir, com_argv[i + 1]);
++		COM_AddGameDirectory(home, va(".nprquake-sdl/%s", com_argv[i + 1]));
+ 	}
+ 
++    /* If home is available, create the game directory */
++    if (home) {
++        COM_CreatePath(com_gamedir);
++        Sys_mkdir(com_gamedir);
++    }
++
+ //
+ // -path <dir or packfile> [<dir or packfile>] ...
+ // Fully specifies the exact serach path, overriding the generated one
+diff -Naur NPRQuake.old/NPRQuakeSrc/common.h NPRQuake/NPRQuakeSrc/common.h
+--- NPRQuake.old/NPRQuakeSrc/common.h	1999-12-21 21:54:20.000000000 +0100
++++ NPRQuake/NPRQuakeSrc/common.h	2008-03-24 21:54:37.000000000 +0100
+@@ -165,6 +165,7 @@
+ extern int com_filesize;
+ struct cache_user_s;
+ 
++extern	char	com_basedir[MAX_OSPATH];
+ extern	char	com_gamedir[MAX_OSPATH];
+ 
+ void COM_WriteFile (char *filename, void *data, int len);
+diff -Naur NPRQuake.old/NPRQuakeSrc/gl_rmisc.c NPRQuake/NPRQuakeSrc/gl_rmisc.c
+--- NPRQuake.old/NPRQuakeSrc/gl_rmisc.c	2003-05-31 05:26:13.000000000 +0200
++++ NPRQuake/NPRQuakeSrc/gl_rmisc.c	2008-03-25 19:15:11.000000000 +0100
+@@ -572,8 +572,9 @@
+ #ifdef _WIN32 //JG
+     hnewlib = LoadLibrary( lib );
+ #else
+-    libfile = malloc(strlen(lib) + 4);
+-    strcpy(libfile, lib);
++    libfile = malloc(strlen(lib) + 512);
++    strcpy(libfile, GENTOO_LIBDIR"/");
++    strcat(libfile, lib);
+     strcat(libfile, ".so");
+     hnewlib = dlopen( libfile, RTLD_LAZY | RTLD_GLOBAL );
+     free(libfile);
+diff -Naur NPRQuake.old/NPRQuakeSrc/host.c NPRQuake/NPRQuakeSrc/host.c
+--- NPRQuake.old/NPRQuakeSrc/host.c	1999-12-21 21:53:24.000000000 +0100
++++ NPRQuake/NPRQuakeSrc/host.c	2008-03-24 22:06:35.000000000 +0100
+@@ -261,6 +261,10 @@
+ 		Key_WriteBindings (f);
+ 		Cvar_WriteVariables (f);
+ 
++		/* Save the mlook state (rarely used as an actual key binding) */
++		if (in_mlook.state & 1)
++			fprintf(f, "+mlook\n");
++
+ 		fclose (f);
+ 	}
+ }

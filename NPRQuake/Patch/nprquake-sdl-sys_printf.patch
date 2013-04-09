@@ -1,0 +1,12 @@
+diff -Naur NPRQuake.old/NPRQuakeSrc/sys_linux.c NPRQuake/NPRQuakeSrc/sys_linux.c
+--- NPRQuake.old/NPRQuakeSrc/sys_linux.c	2002-02-07 01:36:28.000000000 +0100
++++ NPRQuake/NPRQuakeSrc/sys_linux.c	2008-03-25 09:11:00.000000000 +0100
+@@ -86,7 +86,7 @@
+ void Sys_Printf (char *fmt, ...)
+ {
+ 	va_list		argptr;
+-	char		text[2048];
++	char		text[4096];
+ 	unsigned char		*p;
+ 
+ 	va_start (argptr,fmt);

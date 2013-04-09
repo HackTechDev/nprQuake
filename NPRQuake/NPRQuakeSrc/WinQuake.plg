@@ -1,0 +1,214 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: winquake - Win32 GL Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\WINDOWS\TEMP\RSPA331.TMP" with contents
+[
+/nologo /G5 /ML /GX /Ot /Ow /I ".\dxsdk\sdk\inc" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "GLQUAKE" /FR".\release_gl/" /Fp".\release_gl/WinQuake.pch" /YX /Fo".\release_gl/" /Fd".\release_gl/" /FD /c 
+"C:\Windows\Desktop\QuakeSrc\cd_win.c"
+"C:\Windows\Desktop\QuakeSrc\chase.c"
+"C:\Windows\Desktop\QuakeSrc\cl_demo.c"
+"C:\Windows\Desktop\QuakeSrc\cl_input.c"
+"C:\Windows\Desktop\QuakeSrc\cl_main.c"
+"C:\Windows\Desktop\QuakeSrc\cl_parse.c"
+"C:\Windows\Desktop\QuakeSrc\cl_tent.c"
+"C:\Windows\Desktop\QuakeSrc\cmd.c"
+"C:\Windows\Desktop\QuakeSrc\common.c"
+"C:\Windows\Desktop\QuakeSrc\conproc.c"
+"C:\Windows\Desktop\QuakeSrc\console.c"
+"C:\Windows\Desktop\QuakeSrc\crc.c"
+"C:\Windows\Desktop\QuakeSrc\cvar.c"
+"C:\Windows\Desktop\QuakeSrc\gl_draw.c"
+"C:\Windows\Desktop\QuakeSrc\gl_mesh.c"
+"C:\Windows\Desktop\QuakeSrc\gl_model.c"
+"C:\Windows\Desktop\QuakeSrc\gl_refrag.c"
+"C:\Windows\Desktop\QuakeSrc\gl_rlight.c"
+"C:\Windows\Desktop\QuakeSrc\gl_rmain.c"
+"C:\Windows\Desktop\QuakeSrc\gl_rmisc.c"
+"C:\Windows\Desktop\QuakeSrc\gl_rsurf.c"
+"C:\Windows\Desktop\QuakeSrc\gl_screen.c"
+"C:\Windows\Desktop\QuakeSrc\gl_test.c"
+"C:\Windows\Desktop\QuakeSrc\gl_vidnt.c"
+"C:\Windows\Desktop\QuakeSrc\gl_warp.c"
+"C:\Windows\Desktop\QuakeSrc\host.c"
+"C:\Windows\Desktop\QuakeSrc\host_cmd.c"
+"C:\Windows\Desktop\QuakeSrc\in_win.c"
+"C:\Windows\Desktop\QuakeSrc\keys.c"
+"C:\Windows\Desktop\QuakeSrc\mathlib.c"
+"C:\Windows\Desktop\QuakeSrc\menu.c"
+"C:\Windows\Desktop\QuakeSrc\net_dgrm.c"
+"C:\Windows\Desktop\QuakeSrc\net_loop.c"
+"C:\Windows\Desktop\QuakeSrc\net_main.c"
+"C:\Windows\Desktop\QuakeSrc\net_vcr.c"
+"C:\Windows\Desktop\QuakeSrc\net_win.c"
+"C:\Windows\Desktop\QuakeSrc\net_wins.c"
+"C:\Windows\Desktop\QuakeSrc\net_wipx.c"
+"C:\Windows\Desktop\QuakeSrc\pr_cmds.c"
+"C:\Windows\Desktop\QuakeSrc\pr_edict.c"
+"C:\Windows\Desktop\QuakeSrc\pr_exec.c"
+"C:\Windows\Desktop\QuakeSrc\r_part.c"
+"C:\Windows\Desktop\QuakeSrc\sbar.c"
+"C:\Windows\Desktop\QuakeSrc\snd_dma.c"
+"C:\Windows\Desktop\QuakeSrc\snd_mem.c"
+"C:\Windows\Desktop\QuakeSrc\snd_mix.c"
+"C:\Windows\Desktop\QuakeSrc\snd_win.c"
+"C:\Windows\Desktop\QuakeSrc\sv_main.c"
+"C:\Windows\Desktop\QuakeSrc\sv_move.c"
+"C:\Windows\Desktop\QuakeSrc\sv_phys.c"
+"C:\Windows\Desktop\QuakeSrc\sv_user.c"
+"C:\Windows\Desktop\QuakeSrc\sys_win.c"
+"C:\Windows\Desktop\QuakeSrc\view.c"
+"C:\Windows\Desktop\QuakeSrc\wad.c"
+"C:\Windows\Desktop\QuakeSrc\world.c"
+"C:\Windows\Desktop\QuakeSrc\zone.c"
+]
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPA331.TMP" 
+Creating temporary file "C:\WINDOWS\TEMP\RSPA332.TMP" with contents
+[
+.\dxsdk\sdk\lib\dxguid.lib comctl32.lib winmm.lib wsock32.lib opengl32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /profile /machine:I386 /out:".\release_gl\glquake.exe" 
+.\release_gl\cd_win.obj
+.\release_gl\chase.obj
+.\release_gl\cl_demo.obj
+.\release_gl\cl_input.obj
+.\release_gl\cl_main.obj
+.\release_gl\cl_parse.obj
+.\release_gl\cl_tent.obj
+.\release_gl\cmd.obj
+.\release_gl\common.obj
+.\release_gl\conproc.obj
+.\release_gl\console.obj
+.\release_gl\crc.obj
+.\release_gl\cvar.obj
+.\release_gl\gl_draw.obj
+.\release_gl\gl_mesh.obj
+.\release_gl\gl_model.obj
+.\release_gl\gl_refrag.obj
+.\release_gl\gl_rlight.obj
+.\release_gl\gl_rmain.obj
+.\release_gl\gl_rmisc.obj
+.\release_gl\gl_rsurf.obj
+.\release_gl\gl_screen.obj
+.\release_gl\gl_test.obj
+.\release_gl\gl_vidnt.obj
+.\release_gl\gl_warp.obj
+.\release_gl\host.obj
+.\release_gl\host_cmd.obj
+.\release_gl\in_win.obj
+.\release_gl\keys.obj
+.\release_gl\mathlib.obj
+.\release_gl\menu.obj
+.\release_gl\net_dgrm.obj
+.\release_gl\net_loop.obj
+.\release_gl\net_main.obj
+.\release_gl\net_vcr.obj
+.\release_gl\net_win.obj
+.\release_gl\net_wins.obj
+.\release_gl\net_wipx.obj
+.\release_gl\pr_cmds.obj
+.\release_gl\pr_edict.obj
+.\release_gl\pr_exec.obj
+.\release_gl\r_part.obj
+.\release_gl\sbar.obj
+.\release_gl\snd_dma.obj
+.\release_gl\snd_mem.obj
+.\release_gl\snd_mix.obj
+.\release_gl\snd_win.obj
+.\release_gl\sv_main.obj
+.\release_gl\sv_move.obj
+.\release_gl\sv_phys.obj
+.\release_gl\sv_user.obj
+.\release_gl\sys_win.obj
+.\release_gl\view.obj
+.\release_gl\wad.obj
+.\release_gl\world.obj
+.\release_gl\zone.obj
+.\release_gl\winquake.res
+.\release_gl\math.obj
+.\release_gl\snd_mixa.obj
+.\release_gl\sys_wina.obj
+.\release_gl\worlda.obj
+]
+Creating command line "link.exe @C:\WINDOWS\TEMP\RSPA332.TMP"
+<h3>Output Window</h3>
+Compiling...
+cd_win.c
+chase.c
+cl_demo.c
+cl_input.c
+cl_main.c
+cl_parse.c
+cl_tent.c
+cmd.c
+common.c
+conproc.c
+console.c
+crc.c
+cvar.c
+gl_draw.c
+gl_mesh.c
+gl_model.c
+gl_refrag.c
+gl_rlight.c
+gl_rmain.c
+gl_rmisc.c
+gl_rsurf.c
+C:\Windows\Desktop\QuakeSrc\gl_rsurf.c(37) : warning C4005: 'BLOCK_WIDTH' : macro redefinition
+        C:\Windows\Desktop\QuakeSrc\glquake.h(91) : see previous definition of 'BLOCK_WIDTH'
+C:\Windows\Desktop\QuakeSrc\gl_rsurf.c(38) : warning C4005: 'BLOCK_HEIGHT' : macro redefinition
+        C:\Windows\Desktop\QuakeSrc\glquake.h(92) : see previous definition of 'BLOCK_HEIGHT'
+gl_screen.c
+gl_test.c
+gl_vidnt.c
+gl_warp.c
+host.c
+host_cmd.c
+in_win.c
+keys.c
+mathlib.c
+menu.c
+net_dgrm.c
+net_loop.c
+net_main.c
+net_vcr.c
+net_win.c
+net_wins.c
+net_wipx.c
+pr_cmds.c
+pr_edict.c
+pr_exec.c
+r_part.c
+sbar.c
+snd_dma.c
+snd_mem.c
+snd_mix.c
+snd_win.c
+sv_main.c
+sv_move.c
+sv_phys.c
+sv_user.c
+sys_win.c
+view.c
+wad.c
+world.c
+zone.c
+Linking...
+Creating temporary file "C:\WINDOWS\TEMP\RSPC031.BAT" with contents
+[
+@echo off
+copy .\release_gl\glquake.exe c:\quake
+]
+Creating command line "C:\WINDOWS\TEMP\RSPC031.BAT"
+
+        1 file(s) copied
+
+
+
+<h3>Results</h3>
+glquake.exe - 0 error(s), 2 warning(s)
+</pre>
+</body>
+</html>

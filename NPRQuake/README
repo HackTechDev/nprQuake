@@ -1,0 +1,33 @@
+Changed all GLX stuff to SDL in order to fix mouse/keyboard focus problems.
+Didn't know enough GLX, plus I think the SDL code is much, much prettier, and
+simpler.
+
+See the changelog for more info on all the changes I made.
+
+ - Ryan McGuigan (ryan@cardweb.com)
+
+-----------------------------------------------------------------------------
+
+                NPRQuake for Linux
+	Jeremy Green (coolguywithgun@yahoo.com)
+
+  This is a port of NPRQuake to Linux.  I have only tried it on my
+machine.  It requires a GLX-compatible graphics card.  To compile,
+simply run make from the NPRQuake directory.  Binaries will be placed
+in the build subdirectory.  Simply copy (or link) your id1
+subdirectory of your quake install into the build subdirectory, then
+run the quake shell script from there.  I have had problems getting
+Quake to respond to my mouse (and I haven't solved them) and my
+keyboard.  I found that minimising all open windows in your current
+desktop helps to ensure that Quake gets your keyboard's focus.  Once
+you have it running, you can type "r_load <renderer>" from the
+console, where <renderer> is one of dr_default.so, sketch.so,
+bprint.so, and brush.so.  This is my initial (and probaby final)
+release of NPRQuake for Linux.
+
+NPRQuake was orignally made by the people at
+	 http://www.cs.wisc.edu/graphics/Gallery/NPRQuake/
+and is a modification of Quake, by Id Software,
+	 http://www.idsoftware.com/
+This is released under the GNU General Public License, a copy of which
+is in the file COPYING.

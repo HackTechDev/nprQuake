@@ -1,0 +1,40 @@
+diff -Naur NPRQuake.old/Makefile NPRQuake/Makefile
+--- NPRQuake.old/Makefile	2003-05-31 04:55:14.000000000 +0200
++++ NPRQuake/Makefile	2008-03-25 18:42:03.000000000 +0100
+@@ -1,10 +1,11 @@
+-RELEASE_CFLAGS=-Dstricmp=strcasecmp -O3 -ffast-math -funroll-loops -fomit-frame-pointer -fexpensive-optimizations
++RELEASE_CFLAGS=-Dstricmp=strcasecmp $(OPTFLAGS)
++#-DGENTOO_LIBDIR='\"$(GENTOO_LIBDIR)\"' -DGENTOO_DATADIR='\"$(GENTOO_DATADIR)\"'
+ 
+ DEBUG_CFLAGS=-Dstricmp=strcasecmp -g
+ 
+ CFLAGS=$(RELEASE_CFLAGS)
+ 
+-DR_FLAGS=-DGLQUAKE -D_DLL_BUILD -shared
++DR_FLAGS=-DGLQUAKE -D_DLL_BUILD -shared -fPIC
+ 
+ renderers=build/dr_default.so build/brush.so build/bprint.so build/sketch.so
+ 
+diff -Naur NPRQuake.old/NPRQuakeSrc/Makefile NPRQuake/NPRQuakeSrc/Makefile
+--- NPRQuake.old/NPRQuakeSrc/Makefile	2002-02-11 05:30:01.000000000 +0100
++++ NPRQuake/NPRQuakeSrc/Makefile	2008-03-25 18:42:31.000000000 +0100
+@@ -29,7 +29,8 @@
+ 
+ CC=gcc
+ 
+-RELEASE_CFLAGS=$(BASE_CFLAGS) -O3 -ffast-math -funroll-loops -fomit-frame-pointer -fexpensive-optimizations
++RELEASE_CFLAGS=$(BASE_CFLAGS) $(OPTFLAGS)
++#-DGENTOO_LIBDIR='\"$(GENTOO_LIBDIR)\"' -DGENTOO_DATADIR='\"$(GENTOO_DATADIR)\"'
+ DEBUG_CFLAGS=$(BASE_CFLAGS) -g
+ LDFLAGS=-lm
+ CFLAGS=$(RELEASE_CFLAGS)
+@@ -176,7 +177,7 @@
+ 	$(DO_GL_CC)
+ 
+ $(BUILDDIR)/glquake/common.o :       common.c
+-	$(DO_GL_DEBUG_CC)
++	$(DO_GL_CC)
+ 
+ $(BUILDDIR)/glquake/console.o :      console.c
+ 	$(DO_GL_CC)
+

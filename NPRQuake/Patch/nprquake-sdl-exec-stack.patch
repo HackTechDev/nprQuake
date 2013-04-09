@@ -1,0 +1,40 @@
+diff -Naur NPRQuake.old/NPRQuakeSrc/math.s NPRQuake/NPRQuakeSrc/math.s
+--- NPRQuake.old/NPRQuakeSrc/math.s	1999-12-21 21:53:24.000000000 +0100
++++ NPRQuake/NPRQuakeSrc/math.s	2008-03-24 22:50:39.000000000 +0100
+@@ -416,3 +416,6 @@
+ 	call	C(BOPS_Error)
+ 
+ #endif	// id386
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+diff -Naur NPRQuake.old/NPRQuakeSrc/snd_mixa.s NPRQuake/NPRQuakeSrc/snd_mixa.s
+--- NPRQuake.old/NPRQuakeSrc/snd_mixa.s	1999-12-21 21:53:26.000000000 +0100
++++ NPRQuake/NPRQuakeSrc/snd_mixa.s	2008-03-24 22:50:39.000000000 +0100
+@@ -216,3 +216,6 @@
+ 
+ #endif	// id386
+ 
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+diff -Naur NPRQuake.old/NPRQuakeSrc/sys_dosa.s NPRQuake/NPRQuakeSrc/sys_dosa.s
+--- NPRQuake.old/NPRQuakeSrc/sys_dosa.s	1998-08-12 18:45:38.000000000 +0200
++++ NPRQuake/NPRQuakeSrc/sys_dosa.s	2008-03-24 22:50:39.000000000 +0100
+@@ -93,3 +93,6 @@
+ 
+ 	ret
+ 
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+diff -Naur NPRQuake.old/NPRQuakeSrc/worlda.s NPRQuake/NPRQuakeSrc/worlda.s
+--- NPRQuake.old/NPRQuakeSrc/worlda.s	1999-12-21 21:53:26.000000000 +0100
++++ NPRQuake/NPRQuakeSrc/worlda.s	2008-03-24 22:50:39.000000000 +0100
+@@ -142,3 +142,6 @@
+ 
+ #endif	// id386
+ 
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif

@@ -1,0 +1,62 @@
+1) Appliquer les patch
+
+2) Copier les .so dans /usr/local/lib
+
+[~/ATRIER2/NPRQuake/build] ➔ sudo cp *.so /usr/local/lib
+
+3) Mise-à-jour des librairies .so
+
+[~/ATRIER2/NPRQuake/build] ➔ sudo /sbin/ldconfig
+
+4) Modifier le script de lancement 
+
+Ouvrir : 
+
+nprquake.sh
+
+Chercher : 
+
+./glquake.sdl -nosound $@
+
+Remplacer par :
+
+./glquake.sdl -nosound -width 640 -height 480 $@
+
+Chercher : 
+
+#!/bin/sh
+
+Ajouter :
+
+setxkbmap -layout us
+
+Ajouter à la fin : 
+
+setxkbmap -layout fr
+
+5) Activer les rendus.
+
+Si le clavier est en "qwerty" :
+
+_ = [Shift] + [)]]
+. = [:]
+a = [Q]
+
+Dans la console Quake : 
+
+- Rendu par défaut : 
+
+r_load dr_default
+
+- Rendu Sketchy
+
+r_load sketch.so
+
+- Rendu Blueprint
+
+r_load bprint.so
+
+- Rendu Brushstroke
+
+r_load brush.so
+

@@ -1,0 +1,12 @@
+11/02/2002 - Cleaned up the code a bit, made fullscreen/windowed option work,
+             fullscreen by default, pass -window on the command line to play
+             windowed.
+           - Added kludge to deactivate mouse grab when console is active.
+           - Fixed some keyboard input problems
+
+08/02/2002 - Removed all GLX stuff, replaced with SDL.  Mouse/keyboard focus
+             problems are now fixed.
+           - Mouse/keyboard input now uses SDL.  in_dgamouse no longer useful,
+             input will use whatever is available with SDL, SHOULD be nice and
+             smooth with SDL.
+           - modified "quake" script to pass args to glquake binary
