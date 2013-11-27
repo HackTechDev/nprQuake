@@ -1,4 +1,4 @@
-RELEASE_CFLAGS=-Dstricmp=strcasecmp -mcpu=i586 -march=i586 -O6 -ffast-math -funroll-loops -fomit-frame-pointer -fexpensive-optimizations
+RELEASE_CFLAGS=-Dstricmp=strcasecmp -fPIC -O2 -fomit-frame-pointer -fexpensive-optimizations -march=native
 
 DEBUG_CFLAGS=-Dstricmp=strcasecmp -g
 
