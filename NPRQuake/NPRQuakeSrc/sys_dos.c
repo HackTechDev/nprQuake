@@ -545,7 +545,7 @@ void Sys_Printf (char *fmt, ...)
 	char		text[1024];
 	
 	va_start (argptr,fmt);
-	vsprintf (text,fmt,argptr);
+	vsnprintf (text,sizeof(text),fmt,argptr);
 	va_end (argptr);
 
 	if (cls.state == ca_dedicated)
@@ -609,7 +609,7 @@ void Sys_Error (char *error, ...)
     char        string[1024];
     
     va_start (argptr,error);
-    vsprintf (string,error,argptr);
+    vsnprintf (string,sizeof(string),error,argptr);
     va_end (argptr);
 
 	Host_Shutdown();

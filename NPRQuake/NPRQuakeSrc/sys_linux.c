@@ -89,23 +89,13 @@ void Sys_Printf (char *fmt, ...)
 	char		text[4096];
 	unsigned char		*p;
 
-	va_start (argptr,fmt);
-	vsprintf (text,fmt,argptr);
-	va_end (argptr);
-
-	if (strlen(text) > sizeof(text))
-		Sys_Error("memory overwrite in Sys_Printf");
-
     if (nostdout)
         return;
 
-	for (p = (unsigned char *)text; *p; p++) {
-		*p &= 0x7f;
-		if ((*p > 128 || *p < 32) && *p != 10 && *p != 13 && *p != 9)
-			printf("[%02x]", *p);
-		else
-			putc(*p, stdout);
-	}
+	va_start (argptr,fmt);
+    vprintf(fmt, argptr);
+	va_end (argptr);
+    return;
 }
 
 #if 0
@@ -145,7 +135,7 @@ void Sys_Error (char *error, ...)
     fcntl (0, F_SETFL, fcntl (0, F_GETFL, 0) & ~FNDELAY);
     
     va_start (argptr,error);
-    vsprintf (string,error,argptr);
+    vsnprintf (string,sizeof(string),error,argptr);
     va_end (argptr);
 	fprintf(stderr, "Error: %s\n", string);
 
@@ -157,10 +147,10 @@ void Sys_Error (char *error, ...)
 void Sys_Warn (char *warning, ...)
 { 
     va_list     argptr;
-    char        string[1024];
+    char        string[4096];
     
     va_start (argptr,warning);
-    vsprintf (string,warning,argptr);
+    vsnprintf (string,sizeof(string),warning,argptr);
     va_end (argptr);
 	fprintf(stderr, "Warning: %s", string);
 } 
@@ -247,7 +237,7 @@ void Sys_DebugLog(char *file, char *fmt, ...)
     int fd;
     
     va_start(argptr, fmt);
-    vsprintf(data, fmt, argptr);
+    vsnprintf(data, sizeof(data), fmt, argptr);
     va_end(argptr);
 //    fd = open(file, O_WRONLY | O_BINARY | O_CREAT | O_APPEND, 0666);
     fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0666);
@@ -341,15 +331,6 @@ char *Sys_ConsoleInput(void)
 	return NULL;
 }
 
-#if !id386
-void Sys_HighFPPrecision (void)
-{
-}
-
-void Sys_LowFPPrecision (void)
-{
-}
-#endif
 
 int main (int c, char **v)
 {
