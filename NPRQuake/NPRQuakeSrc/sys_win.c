@@ -364,13 +364,13 @@ void Sys_Error (char *error, ...)
 	}
 
 	va_start (argptr, error);
-	vsprintf (text, error, argptr);
+	vsnprintf (text,sizeof(text), error, argptr);
 	va_end (argptr);
 
 	if (isDedicated)
 	{
 		va_start (argptr, error);
-		vsprintf (text, error, argptr);
+		vsnprintf (text,sizeof(text), error, argptr);
 		va_end (argptr);
 
 		sprintf (text2, "ERROR: %s\n", text);
@@ -432,7 +432,7 @@ void Sys_Printf (char *fmt, ...)
 	if (isDedicated)
 	{
 		va_start (argptr,fmt);
-		vsprintf (text, fmt, argptr);
+		vsnprintf (text,sizeof(text), fmt, argptr);
 		va_end (argptr);
 
 		WriteFile(houtput, text, strlen (text), &dummy, NULL);	

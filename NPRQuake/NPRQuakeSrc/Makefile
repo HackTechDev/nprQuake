@@ -27,9 +27,9 @@ MESA_DIR=/usr/local/src/Mesa-2.6
 BUILD_DEBUG_DIR=debug$(ARCH)$(GLIBC)
 BUILD_RELEASE_DIR=release$(ARCH)$(GLIBC)
 
-CC=gcc
+CC=gcc -fPIC
 
-RELEASE_CFLAGS=$(BASE_CFLAGS) -mcpu=i586 -march=i586 -O6 -ffast-math -funroll-loops -fomit-frame-pointer -fexpensive-optimizations
+RELEASE_CFLAGS=$(BASE_CFLAGS) -O2 -fomit-frame-pointer -fexpensive-optimizations -march=native
 DEBUG_CFLAGS=$(BASE_CFLAGS) -g
 LDFLAGS=-lm
 CFLAGS=$(RELEASE_CFLAGS)
