@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <libc.h>
 #endif
 
-extern int gethostname (char *, int);
+//extern int gethostname (char *, int);
 extern int close (int);
 
 extern cvar_t hostname;
