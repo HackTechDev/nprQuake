@@ -88,8 +88,8 @@ extern	PROC glVertexPointerEXT;
 // r_local.h -- private refresh defs
 
 
-#define	BLOCK_WIDTH	(unsigned char)256//JG
-#define	BLOCK_HEIGHT	(unsigned char)256//JG
+#define	BLOCK_WIDTH		128
+#define	BLOCK_HEIGHT	128
 
 #define	MAX_LIGHTMAPS	64
 
