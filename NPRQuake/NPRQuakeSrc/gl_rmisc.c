@@ -573,7 +573,7 @@ int R_dr_LoadRenderer_helper( const char * lib ) {
 #endif
 
     if( hnewlib == NULL ) {
-        Con_Printf( "error: couldn't load %s\n", lib );
+        Con_Printf( "error: couldn't load %s: %s\n", lib, dlerror() );
         return( 0 );
     }
 
