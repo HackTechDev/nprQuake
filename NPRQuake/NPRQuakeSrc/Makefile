@@ -31,7 +31,7 @@ CC=gcc -fPIC
 
 RELEASE_CFLAGS=$(BASE_CFLAGS) -O2 -fomit-frame-pointer -fexpensive-optimizations -march=native
 DEBUG_CFLAGS=$(BASE_CFLAGS) -g
-LDFLAGS=-lm
+LDFLAGS=-lm -no-pie
 CFLAGS=$(RELEASE_CFLAGS)
 
 MESAGLLDFLAGS=-L/usr/X11R6/lib -L/usr/local/lib -L$(MESA_DIR)/lib -lMesaGL -lglide2x -lX11 -lXext -ldl
