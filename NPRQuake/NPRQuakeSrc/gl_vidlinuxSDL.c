@@ -277,6 +277,10 @@ static int SDL_LateKey(SDL_keysym *sym)
 			key = '/';
 			break;
 
+		case SDLK_KP_PERIOD:
+			key = K_DEL;
+			break;
+
 		default:
 			key = sym->sym;
 			break;
